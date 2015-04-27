@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 
-#define CTAssetsPickerControllerLocalizedString(key) \
-NSLocalizedStringFromTableInBundle((key), @"CTAssetsPickerController", [NSBundle ctassetsPickerControllerBundle], nil)
+//#define CTAssetsPickerControllerLocalizedString(key) \
+//NSLocalizedStringFromTableInBundle((key), @"CTAssetsPickerController", [NSBundle ctassetsPickerControllerBundle], nil)
+#define CTAssetsPickerControllerLocalizedString(key) key
 
 @interface NSBundle (CTAssetsPickerController)
 
