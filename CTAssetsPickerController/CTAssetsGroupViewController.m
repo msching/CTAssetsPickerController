@@ -65,7 +65,10 @@
 {
     if (self = [super initWithStyle:UITableViewStylePlain])
     {
-        self.preferredContentSize = CTAssetPickerPopoverContentSize;
+        if ([self respondsToSelector:@selector(setPreferredContentSize:)])
+        {
+            self.preferredContentSize = CTAssetPickerPopoverContentSize;
+        }
         [self addNotificationObserver];
     }
     

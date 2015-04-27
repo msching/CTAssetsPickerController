@@ -184,9 +184,21 @@ NSString * const CTAssetScrollViewTappedNotification = @"CTAssetScrollViewTapped
         
         if (asset.defaultRepresentation)
         {
-            image = [UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage
-                                        scale:scale
-                                  orientation:UIImageOrientationUp];
+            CGImageRef imageRef = asset.defaultRepresentation.fullScreenImage;
+            if (!imageRef)
+            {
+                imageRef = asset.aspectRatioThumbnail;
+            }
+            if (imageRef)
+            {
+                image = [UIImage imageWithCGImage:imageRef
+                                            scale:scale
+                                      orientation:UIImageOrientationUp];
+            }
+            else
+            {
+                image = [UIImage ctassetsPickerControllerImageNamed:@"CTAssetsPickerEmptyAsset"];
+            }
         }
         else
         {

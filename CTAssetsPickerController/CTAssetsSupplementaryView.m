@@ -48,21 +48,21 @@
         [self addSubview:_label];
         
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_label
-                                                         attribute:NSLayoutAttributeCenterX
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeCenterX
-                                                        multiplier:1.0f
-                                                          constant:0.0f]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_label
-                                                         attribute:NSLayoutAttributeCenterY
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeCenterY
-                                                        multiplier:1.0f
-                                                          constant:0.0f]];
+//        [self addConstraint:[NSLayoutConstraint constraintWithItem:_label
+//                                                         attribute:NSLayoutAttributeCenterX
+//                                                         relatedBy:NSLayoutRelationEqual
+//                                                            toItem:self
+//                                                         attribute:NSLayoutAttributeCenterX
+//                                                        multiplier:1.0f
+//                                                          constant:0.0f]];
+//        
+//        [self addConstraint:[NSLayoutConstraint constraintWithItem:_label
+//                                                         attribute:NSLayoutAttributeCenterY
+//                                                         relatedBy:NSLayoutRelationEqual
+//                                                            toItem:self
+//                                                         attribute:NSLayoutAttributeCenterY
+//                                                        multiplier:1.0f
+//                                                          constant:0.0f]];
     }
     
     return self;

@@ -59,7 +59,10 @@
         self.dataSource             = self;
         self.delegate               = self;
         self.view.backgroundColor   = [UIColor whiteColor];
-        self.automaticallyAdjustsScrollViewInsets = NO;
+        if ([self respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)])
+        {
+             self.automaticallyAdjustsScrollViewInsets = NO;
+        }
     }
     
     return self;
@@ -87,7 +90,7 @@
 - (void)setTitleIndex:(NSInteger)index
 {
     NSInteger count = self.assets.count;
-    self.title      = [NSString stringWithFormat:CTAssetsPickerControllerLocalizedString(@"%ld of %ld"), index, count];
+    self.title      = [NSString stringWithFormat:CTAssetsPickerControllerLocalizedString(@"%ld of %ld"), (long)index, (long)count];
 }
 
 
@@ -210,7 +213,14 @@
     
     [UIView animateWithDuration:0.2
                      animations:^{
-                         [self setNeedsStatusBarAppearanceUpdate];
+                         if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
+                         {
+                             [self setNeedsStatusBarAppearanceUpdate];
+                         }
+                         else
+                         {
+                             [[UIApplication sharedApplication] setStatusBarHidden:self.statusBarHidden withAnimation:UIStatusBarAnimationSlide];
+                         }
                          [self.navigationController.navigationBar setAlpha:0.0f];
                          [self.navigationController setNavigationBarHidden:YES];
                          self.view.backgroundColor = [UIColor blackColor];
@@ -227,7 +237,14 @@
     
     [UIView animateWithDuration:0.2
                      animations:^{
-                         [self setNeedsStatusBarAppearanceUpdate];
+                         if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
+                         {
+                             [self setNeedsStatusBarAppearanceUpdate];
+                         }
+                         else
+                         {
+                             [[UIApplication sharedApplication] setStatusBarHidden:self.statusBarHidden withAnimation:UIStatusBarAnimationSlide];
+                         }
                          [self.navigationController.navigationBar setAlpha:1.0f];
                          self.view.backgroundColor = [UIColor whiteColor];
                      }];

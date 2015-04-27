@@ -84,7 +84,10 @@ NSString * const CTAssetsSupplementaryViewIdentifier = @"CTAssetsSupplementaryVi
                 forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                        withReuseIdentifier:CTAssetsSupplementaryViewIdentifier];
         
-        self.preferredContentSize = CTAssetPickerPopoverContentSize;
+        if ([self respondsToSelector:@selector(setPreferredContentSize:)])
+        {
+            self.preferredContentSize = CTAssetPickerPopoverContentSize;
+        }
     }
     
     [self addNotificationObserver];
@@ -334,7 +337,12 @@ NSString * const CTAssetsSupplementaryViewIdentifier = @"CTAssetsSupplementaryVi
         [self.collectionView reloadData];
         
         if (self.collectionView.contentOffset.y <= 0)
-            [self.collectionView setContentOffset:CGPointMake(0, self.collectionViewLayout.collectionViewContentSize.height)];
+        {
+            if ([self respondsToSelector:@selector(collectionViewLayout)])
+            {
+                [self.collectionView setContentOffset:CGPointMake(0, self.collectionViewLayout.collectionViewContentSize.height)];
+            }
+        }
     }
     else
     {

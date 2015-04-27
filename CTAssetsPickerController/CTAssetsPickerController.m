@@ -53,7 +53,10 @@ NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPic
         _showsNumberOfAssets    = YES;
         _alwaysEnableDoneButton = NO;
         
-        self.preferredContentSize = CTAssetPickerPopoverContentSize;
+        if ([self respondsToSelector:@selector(setPreferredContentSize:)])
+        {
+            self.preferredContentSize = CTAssetPickerPopoverContentSize;
+        }
         
         [self setupNavigationController];
         [self setupToolbarApperance];
@@ -78,8 +81,11 @@ NSString * const CTAssetsPickerSelectedAssetsChangedNotification = @"CTAssetsPic
     UINavigationController *nav = [[self createChildNavigationController] initWithRootViewController:vc];
     
     // Enable iOS 7 back gesture
-    nav.interactivePopGestureRecognizer.enabled  = YES;
-    nav.interactivePopGestureRecognizer.delegate = nil;
+    if ([nav respondsToSelector:@selector(interactivePopGestureRecognizer)])
+    {
+        nav.interactivePopGestureRecognizer.enabled  = YES;
+        nav.interactivePopGestureRecognizer.delegate = nil;
+    }
     
     nav.delegate = self;
     [nav willMoveToParentViewController:self];
